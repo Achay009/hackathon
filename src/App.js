@@ -83,7 +83,6 @@ function ChatRoom() {
     e.preventDefault();
 
     const { uid, photoURL, displayName} = auth.currentUser;
-
     const response = await axios.post('https://d1zqqz8u9h.execute-api.us-east-1.amazonaws.com/prod', {inputTranscript : formValue}, {
       headers: {
         'Content-Type': 'application/json'
