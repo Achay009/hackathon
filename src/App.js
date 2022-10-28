@@ -127,18 +127,20 @@ function ChatRoom() {
 
 function ChatMessage(props) {
   const { text, uid, photoURL, displayName, sentiment } = props.message;
-  let result ;
-  if (sentiment === "NEUTRAL"){ result = <span className='sentiment'>{displayName} seems 😐</span>}
-  if (sentiment === "POSITIVE"){ result = <span className='sentiment'>{displayName} seems 😀</span>}
-  if (sentiment === "NEGATIVE"){ result = <span className='sentiment'>{displayName} seems 😡</span>}
-
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
+  let result = <span className={`sentiment ${messageClass === 'sent' ? 'block_sent' : 'block_receive'}`}>{displayName} seems 😐</span>;
+  if (sentiment === "NEUTRAL"){ result = <span className={`sentiment ${messageClass === 'sent' ? 'block_sent' : 'block_receive'}`}>{displayName} seems 😐</span>}
+  if (sentiment === "POSITIVE"){ result = <span className={`sentiment ${messageClass === 'sent' ? 'block_sent' : 'block_receive'}`}>{displayName} seems 😀</span>}
+  if (sentiment === "NEGATIVE"){ result = <span className={`sentiment ${messageClass === 'sent' ? 'block_sent' : 'block_receive'}`}>{displayName} seems 😡</span>}
+
   return (<>
-        <div className={`message ${messageClass}`}>
-          <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
-          <p>{text}</p>
+        <div className='block'>
+          <div className={`message ${messageClass}`}>
+            <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+            <p>{text}</p>
+          </div>
           {result}
         </div>
   </>)

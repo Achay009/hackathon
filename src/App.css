@@ -161,9 +161,17 @@ img {
   color: gray;
 }
 
-/* .block {
+.block {
   display: flex;
   flex-direction: column;
-} */
+}
+
+.block_receive {
+  text-align: left;
+}
+
+.block_sent {
+  text-align: right;
+}
 
 
